@@ -96,14 +96,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             })
 
         // Convert SVG to PNG using Sharp
-        const pngBuffer = await sharp(Buffer.from(svg))
-            .toFormat('png')
-            .toBuffer();
+        if (!showResults){
+            // get image from public folder
+            const filePath = join(process.cwd(), 'public', 'blackvswhite.png')
+            const image = fs.readFileSync(filePath)
+            res.setHeader('Content-Type', 'image/png');
+            res.setHeader('Cache-Control', 'max-age=10');
+            res.send(image);
+        } else {
+            const pngBuffer = await sharp(Buffer.from(svg))
+                .toFormat('png')
+                .toBuffer();
 
-        // Set the content type to PNG and send the response
-        res.setHeader('Content-Type', 'image/png');
-        res.setHeader('Cache-Control', 'max-age=10');
-        res.send(pngBuffer);
+            // Set the content type to PNG and send the response
+            res.setHeader('Content-Type', 'image/png');
+            res.setHeader('Cache-Control', 'max-age=10');
+            res.send(pngBuffer);
+        }
     } catch (error) {
         console.error(error);
         res.status(500).send('Error generating image');
