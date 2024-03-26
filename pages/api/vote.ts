@@ -5,9 +5,10 @@ import {getSSLHubRpcClient, Message} from "@farcaster/hub-nodejs";
 
 const HUB_URL = process.env['HUB_URL']
 const client = HUB_URL ? getSSLHubRpcClient(HUB_URL) : undefined;
+console.log(`HUB_URL: ${HUB_URL} ..........`)
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.method === 'POST') {
+    if (req.method === 'GET') {
         // Process the vote
         // For example, let's assume you receive an option in the body
         try {

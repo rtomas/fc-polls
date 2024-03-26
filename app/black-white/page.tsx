@@ -4,6 +4,7 @@ import {PollVoteForm} from "@/app/form";
 import Head from "next/head";
 import {Metadata, ResolvingMetadata} from "next";
 
+const fixed_Id = "fe39d8c4-2b01-4ead-93ef-82f8e512910a"
 async function getPoll(id: string): Promise<Poll> {
     let nullPoll = {
         id: "",
@@ -43,8 +44,9 @@ export async function generateMetadata(
     parent: ResolvingMetadata
 ): Promise<Metadata> {
     // read route params
-    const id = params.id
+    let id = fixed_Id
     const poll = await getPoll(id)
+    console.log(poll)
 
     const fcMetadata: Record<string, string> = {
         "fc:frame": "vNext",
@@ -54,11 +56,6 @@ export async function generateMetadata(
 
     fcMetadata[`fc:frame:button:${1}`] = "Black";
     fcMetadata[`fc:frame:button:${2}`] = "White";
-/* 
-    [poll.option1, poll.option2, poll.option3, poll.option4].filter(o => o !== "").map((option, index) => {
-        fcMetadata[`fc:frame:button:${index + 1}`] = option;
-    }) */
-
 
     return {
         title: poll.title,
@@ -86,7 +83,8 @@ function getMeta(
 
 
 export default async function Page({params}: { params: {id: string}}) {
-    const poll = await getPoll(params.id);
+    const id = ""
+    const poll = await getPoll(fixed_Id);
 
     return(
         <>
