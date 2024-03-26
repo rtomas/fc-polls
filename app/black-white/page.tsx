@@ -4,7 +4,7 @@ import {PollVoteForm} from "@/app/form";
 import Head from "next/head";
 import {Metadata, ResolvingMetadata} from "next";
 
-const fixed_Id = "fe39d8c4-2b01-4ead-93ef-82f8e512910a"
+const fixed_Id = "f14d223d-8c0c-49a9-a998-3d72ffe27537"
 async function getPoll(id: string): Promise<Poll> {
     let nullPoll = {
         id: "",
