@@ -51,8 +51,8 @@ export async function generateMetadata(
 
     const fcMetadata: Record<string, string> = {
         "fc:frame": "vNext",
-        "fc:frame:post_url": `${process.env['HOST']}/api/vote?id=${id}`,
-        "fc:frame:image": `${process.env['HOST']}/api/image?id=${id}`,
+        "fc:frame:post_url": `https://w3a-farcaster.vercel.app/api/vote?id=${id}`,
+        "fc:frame:image": `https://w3a-farcaster.vercel.app/api/image?id=${id}`,
     };
 
     fcMetadata[`fc:frame:button:${1}`] = "White";
