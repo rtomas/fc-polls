@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import {kv} from "@vercel/kv";
 import {Poll} from "@/app/types";
 import {PollVoteForm} from "@/app/form";
@@ -90,7 +91,9 @@ export default async function Page({params}: { params: {id: string}}) {
         <>
             <div className="flex flex-col items-center justify-center min-h-screen py-2">
                 <main className="flex flex-col items-center justify-center flex-1 px-4 sm:px-20 text-center">
-                    <PollVoteForm poll={poll}/>
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <PollVoteForm poll={poll}/>
+                    </Suspense>
                 </main>
             </div>
         </>
