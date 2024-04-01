@@ -55,8 +55,8 @@ export async function generateMetadata(
         "fc:frame:image": `${process.env['HOST']}/api/image?id=${id}`,
     };
 
-    fcMetadata[`fc:frame:button:${1}`] = "Black";
-    fcMetadata[`fc:frame:button:${2}`] = "White";
+    fcMetadata[`fc:frame:button:${1}`] = "White";
+    fcMetadata[`fc:frame:button:${2}`] = "Black";
 
     return {
         title: poll.title,
